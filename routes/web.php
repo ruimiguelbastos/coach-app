@@ -2,6 +2,7 @@
 
 use App\Models\Athlete;
 use App\Models\Macrocycle;
+use App\Models\Mesocycle;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
@@ -32,5 +33,13 @@ Route::get('macrocycle/{macrocycle}', function (Macrocycle $macrocycle) {
 })
     ->middleware(['auth'])
     ->name('macrocycle');
+
+    Route::get('mesocycle/{mesocycle}', function (Mesocycle $mesocycle) {
+        $client = $mesocycle->client;
+
+        return view('mesocycle', ['mesocycle' => $mesocycle, 'microcycles' => $mesocycle->microcycles]);
+})
+    ->middleware(['auth'])
+    ->name('mesocycle');
 
 require __DIR__.'/auth.php';

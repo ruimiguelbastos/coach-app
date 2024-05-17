@@ -66,9 +66,9 @@ final class MesocycleTable extends PowerGridComponent
     }
 
     #[\Livewire\Attributes\On('edit')]
-    public function edit($rowId): void
+    public function edit(Mesocycle $mesocycle): void
     {
-        $this->js('alert('.$rowId.')');
+        redirect()->route('mesocycle', $mesocycle);
     }
 
     public function actions(Mesocycle $row): array
@@ -78,7 +78,7 @@ final class MesocycleTable extends PowerGridComponent
                 ->slot('Edit: '.$row->id)
                 ->id()
                 ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+                ->dispatch('edit', ['mesocycle' => $row])
         ];
     }
 

@@ -13,4 +13,9 @@ class Mesocycle extends Model
     {
         return $this->belongsTo(Macrocycle::class);
     }
+
+    public function microcycles()
+    {
+        return $this->hasMany(Microcycle::class, 'fk_mesocycle');
+    }
 }
