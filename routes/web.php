@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExerciseServer;
 use App\Models\Athlete;
 use App\Models\Macrocycle;
 use App\Models\Mesocycle;
@@ -41,5 +42,7 @@ Route::get('macrocycle/{macrocycle}', function (Macrocycle $macrocycle) {
 })
     ->middleware(['auth'])
     ->name('mesocycle');
+
+    Route::get('exercises', ExerciseServer::class)->name('exercises');
 
 require __DIR__.'/auth.php';
