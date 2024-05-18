@@ -2,12 +2,12 @@
 
 use function Livewire\Volt\{state};
 
-state(['workouts' => [], 'showExerciseForm' => false]);
+state(['workouts' => [], 'mesocycleId', 'showExerciseForm' => false]);
 
 ?>
 
 <div>
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
         @foreach ($workouts as $workout)
             <x-card wire:key='{{ $workout->id }}'>
                 <div class="flex justify-between">
@@ -47,7 +47,7 @@ state(['workouts' => [], 'showExerciseForm' => false]);
             </div>
                 <div x-data="{ expanded: false }" class="grid gap-4">
                     <x-card x-show="expanded" class="rounded-lg ring-2 ring-blue-500">
-                        <livewire:workouts.add-exercise wire:key='w{{ $workout->id }}' />
+                        <livewire:workouts.add-exercise :$workout :$mesocycleId wire:key='w{{ $workout->id }}' />
                     </x-card>
                     <x-button type="button" x-on:click="expanded = ! expanded"> Add exercise</x-button>
                 </div>

@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <livewire:microcycles.show-microcycles :microcycles="$microcycles" />
+            <livewire:microcycles.show-microcycles :$microcycles :mesocycleId="$mesocycle->id" />
         </div>
     </div>
 </x-app-layout>

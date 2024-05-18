@@ -15,6 +15,11 @@ class Workout extends Model
         return $this->belongsTo(Microcycle::class);
     }
 
+    public function mesocycle()
+    {
+        return $this->microcycle()->mesocycle();
+    }
+
     public function exercises(): BelongsToMany
     {
         return $this

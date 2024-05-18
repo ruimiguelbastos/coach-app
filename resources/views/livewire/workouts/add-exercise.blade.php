@@ -1,22 +1,42 @@
 <?php
 
+use App\Models\Mesocycle;
+use App\Models\Workout;
 use Livewire\Volt\Component;
 
 new class extends Component {
+    public $workout;
+    public $mesocycleId;
+
     public $exercise;
     public $description;
     public $sets;
     public $minReps;
     public $maxReps;
 
+    public function mount(Workout $workout, int $mesocycleId)
+    {
+        $this->workout     = $workout;
+        $this->mesocycleId = $mesocycleId;
+    }
+
     public function submit()
     {
         $validated = $this->validate([
-            'exercise' => ['required'],
-            'sets' => ['required', 'gt:0'],
-            'minReps' => ['required', 'gt:0'],
-            'maxReps' => ['required', 'gte:min-reps'],
+            'exercise'  => ['required'],
+            'sets'      => ['required', 'gt:0'],
+            'minReps'   => ['required', 'gt:0'],
+            'maxReps'   => ['required', 'gte:0'],
         ]);
+
+        $this->workout->exercises()->attach($this->exercise, [
+            //'description' => $this->description,
+            'sets'        => $this->sets,
+            'min_reps'    => $this->minReps,
+            'max_reps'    => $this->maxReps
+        ]);
+
+        redirect(route('mesocycle', ['mesocycle' => $this->mesocycleId]));
     }
 }; ?>
 
