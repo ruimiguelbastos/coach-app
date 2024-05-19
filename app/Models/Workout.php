@@ -10,14 +10,14 @@ class Workout extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description',
+    ];
+
     public function microcycle()
     {
-        return $this->belongsTo(Microcycle::class);
-    }
-
-    public function mesocycle()
-    {
-        return $this->microcycle()->mesocycle();
+        return $this->belongsTo(Microcycle::class, 'fk_microcycle');
     }
 
     public function exercises(): BelongsToMany
