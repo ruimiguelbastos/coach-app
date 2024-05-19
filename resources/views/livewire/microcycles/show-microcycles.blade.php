@@ -6,6 +6,7 @@ state(['mesocycleId', 'microcycles']);
 
 ?>
 
+
 <div>
     <ul class="block w-11/12 mx-auto my-4" x-data="{selected:null}">
         {{-- Making all elememnts open by default. To change logic change != to == --}}

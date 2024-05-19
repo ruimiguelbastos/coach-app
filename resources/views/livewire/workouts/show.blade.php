@@ -39,20 +39,22 @@ new class extends Component {
                            <th scope="col" class="px-2 py-3 text-xs font-medium text-gray-500 uppercase text-start dark:text-neutral-500">Sets</th>
                            <th scope="col" class="px-2 py-3 text-xs font-medium text-gray-500 uppercase text-start dark:text-neutral-500">Min Reps</th>
                            <th scope="col" class="px-2 py-3 text-xs font-medium text-gray-500 uppercase text-start dark:text-neutral-500">Max Reps</th>
+                           <th scope="col" class="px-2 py-3 text-xs font-medium text-gray-500 uppercase text-start dark:text-neutral-500">Actions</th>
                         </tr>
                      </thead>
                      <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
                         @php($exercises = $workout->exercises)
                         @foreach ($exercises as $exercise)
-                        <tr class="hover:bg-gray-100 dark:hover:bg-neutral-700">
-                           <td class="px-2 py-4 text-sm font-medium text-gray-800 whitespace-nowrap dark:text-neutral-200">{{ $exercise->name }}</td>
-                           <td class="px-2 py-4 text-sm text-gray-800 whitespace-nowrap dark:text-neutral-200">{{ $exercise->pivot->sets }}</td>
-                           <td class="px-2 py-4 text-sm text-gray-800 whitespace-nowrap dark:text-neutral-200">{{ $exercise->pivot->min_reps }}</td>
-                           <td class="px-2 py-4 text-sm text-gray-800 whitespace-nowrap dark:text-neutral-200">{{ $exercise->pivot->max_reps }}</td>
-                           <td class="px-1 py-4 text-sm text-gray-800 whitespace-nowrap dark:text-neutral-200">
-                              <x-button.circle negative icon="ban" wire:click="delete('{{ $exercise->id }}')" />
-                           <td>
-                        </tr>
+                                <tr class="hover:bg-gray-100 dark:hover:bg-neutral-700">
+                                    <td class="px-2 py-4 text-sm font-medium text-gray-800 whitespace-nowrap dark:text-neutral-200">{{ $exercise->name }}</td>
+                                    <td class="px-2 py-4 text-sm text-gray-800 whitespace-nowrap dark:text-neutral-200">{{ $exercise->pivot->sets }}</td>
+                                    <td class="px-2 py-4 text-sm text-gray-800 whitespace-nowrap dark:text-neutral-200">{{ $exercise->pivot->min_reps }}</td>
+                                    <td class="px-2 py-4 text-sm text-gray-800 whitespace-nowrap dark:text-neutral-200">{{ $exercise->pivot->max_reps }}</td>
+                                    <td class="px-2 py-4 text-sm text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                        <x-button.circle wire:click="$dispatch('openModal', { component: 'workouts.edit-logger' })" secondary icon="clipboard-list" />
+                                        <x-button.circle negative icon="ban" wire:click="delete('{{ $exercise->id }}')" />
+                                    <td>
+                                </tr>
                         @endforeach
                      </tbody>
                   </table>

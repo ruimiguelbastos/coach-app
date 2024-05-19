@@ -34,7 +34,7 @@ new class extends Component {
     }
 } ?>
 
-<div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+<div class="grid grid-cols-1 gap-4">
     @foreach ($workouts as $workout)
         <livewire:workouts.show :$workout :$mesocycleId />
     @endforeach
